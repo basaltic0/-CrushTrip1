@@ -15,6 +15,10 @@ import environ
 import os
 import django_heroku
 from pathlib import Path
+from decouple import config
+from dotenv import load_dotenv
+
+
 
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -167,17 +171,23 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+load_dotenv() 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "hjbin4if7uuw4nvz",
-        "Host": "d6q8diwwdmy5c9k9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        "Username": "ik98ufp0db6g8lp0",
-        "Password": "mnbx3mvph3kwvfc9",
-        "Port": "3306",
-        # "Database": "hjbin4if7uuw4nvz",
+        "USER": "ik98ufp0db6g8lp0",
+        "PASSWORD": "mnbx3mvph3kwvfc9",
+        "HOST": "d6q8diwwdmy5c9k9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        "PORT": "3306",
+        "OPTIONS": {
+            "charset": "utf8mb4"
+        }
     }
 }
+
+
 
 
 CACHES = {
