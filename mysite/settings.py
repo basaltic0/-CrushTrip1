@@ -148,7 +148,7 @@ STATIC_URL = "/static/"
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -162,7 +162,7 @@ LOGIN_URL = 'login'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # 開放外部可存取資料夾的位置
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -187,6 +187,7 @@ CACHES = {
     }
 }
 
+django_heroku.settings(locals())
 
 # RECAPTCHA_PUBLIC_KEY = '6Le7_nkrAAAAAJds5rlRYwM9vDaFRJNPPq6A_g1i'
 # RECAPTCHA_PRIVATE_KEY = '6Le7_nkrAAAAAFWJ1KyHOJzfLk3YlDFurJCPDB5J'
