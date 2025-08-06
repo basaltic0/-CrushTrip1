@@ -170,7 +170,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": BASE_DIR / "db.mysql",
+        "NAME": BASE_DIR / "db.sqlite3",
         "Host": "d6q8diwwdmy5c9k9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "Username": "ik98ufp0db6g8lp0",
         "Password": "mnbx3mvph3kwvfc9",
