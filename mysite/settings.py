@@ -176,7 +176,8 @@ DATABASES = {
         "HOST": "d6q8diwwdmy5c9k9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "PORT": "3306",
         "OPTIONS": {
-            "charset": "utf8mb4"
+            "charset": "utf8mb4",
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
     }
 }
