@@ -15,10 +15,6 @@ import environ
 import os
 import django_heroku
 from pathlib import Path
-from decouple import config
-from dotenv import load_dotenv
-
-
 
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -171,8 +167,6 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-load_dotenv() 
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
@@ -186,7 +180,6 @@ DATABASES = {
         }
     }
 }
-
 
 
 
