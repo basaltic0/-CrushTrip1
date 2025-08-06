@@ -450,7 +450,8 @@
                         <div class="col-lg-4 col-md-6 ">
                             <a href="{% url 'cons_detail' group.grouper %}" class="single-feature mb-30 d-block text-dark text-decoration-none">
                                 <div class="title d-flex flex-row pb-20">
-                                    {% comment %} <span class="lnr lnr-user"></span> {% endcomment %}
+                                    {% comment %} <span  class="lnr lnr-user"></span> {% endcomment %}
+                                    <img src=" {{ group.list.0.img }}" alt="{{ group.grouper }}" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%; margin-right: 8px;" />
                                     <h4>{{ group.grouper }}</h4>
                                 </div>
                                 <p>{{ group.list.0.content|truncatechars:50 }}</p>

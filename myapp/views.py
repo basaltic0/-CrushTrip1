@@ -875,6 +875,7 @@ def index(request):
     data_list = crawlers_main.objects.all()  # 從資料庫抓所有資料
     data_list_osusume = crawlers_main.objects.filter(area='osusume')
     img = CustomUser.objects.all()  # 從資料庫抓取所有 CustomUser 實例
+    for obj in data_list_osusume:obj.img = obj.img if obj.img else '/static/white.jpg'
 
     context = {
         'data_list': data_list,

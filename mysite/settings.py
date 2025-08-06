@@ -171,11 +171,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-        "Host": "mcldisu5ppkm29wf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        "Username": "vjr61owdt6ou592r",
-        "Password": "j1zbmffee9oqryb8",
+        "Host": "d6q8diwwdmy5c9k9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        "Username": "tm4eocb73l9n3oct",
+        "Password": "mc28ljqqla9os2on",
         "Port": "3306",
-        "Database": "r494s7l95n8xuxf6",
+        "Database": "j0c0gsyrxrlq7bya",
     }
 }
 
