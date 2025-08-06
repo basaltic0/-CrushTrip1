@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>忘記帳號</h2>
+<p>請輸入您註冊時使用的 Email，我們將寄送您的帳號資訊至該信箱。</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">送出</button>
+</form>
+
+{% if success %}
+    <div class="alert alert-success mt-3">帳號資訊已寄出，請查看您的 Email。</div>
+{% endif %}
+
+{% if error %}
+    <div class="alert alert-danger mt-3">{{ error }}</div>
+{% endif %}
+{% endblock %}
