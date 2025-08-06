@@ -1,0 +1,10 @@
+親愛的 {{ user.username }} 您好，
+
+感謝您註冊 CrushTrip，請點擊以下連結啟用帳號：
+
+http://{{ domain }}{% url 'activate' uid=uid token=token %}
+
+若有問題請聯絡客服。
+
+                
+

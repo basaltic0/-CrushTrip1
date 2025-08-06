@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-hant" class="no-js">
+<head>
+    
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% comment %} <img src="{% static 'img/logo.png' %}" alt="Logo"> {% endcomment %}
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>CrushTrip</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/animate.min.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+     <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+   
+<style>
+.contact-form .row {
+  align-items: stretch;
+}
+
+.contact-form .col-md-6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-form textarea {
+  height: 100%;
+  resize: none;
+}
+
+
+.avatar-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+ 
+}
+.avatar-img:hover {
+  transform: scale(1.05);
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.heart {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  text-shadow: 0 0 2px #000;
+  transition: transform 0.2s ease-in-out;
+  
+}
+.heart::before {
+  content: '\2661'; /* 空心愛心 ♡ */
+  color: #fff;
+  font-size: 24px;
+}
+
+.heart.liked::before {
+  content: '\2665'; /* 實心愛心 ♥ */
+  color: #e74c3c;
+  animation: ig-like-bounce 0.4s ease;
+}
+
+
+@keyframes ig-like-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.6); }
+  100% { transform: scale(1); }
+}
+
+.name {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: white;
+  background:black;  
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.wide-container {
+  max-width: 1320px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.1); /* 微縮放 */
+  color: #fff;
+}
+
+/* 移除點擊時的黑框 */
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* 自訂箭頭符號大小（Swiper 預設用 ::after 製作） */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px;
+}
+
+.swiper {
+  
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 160px; /* 建議固定寬度而非 auto */
+  font-size: 14px;
+  text-align: center;
+  box-sizing: border-box;
+
+}
+
+.anchor-offset {
+    height: 150px;         /* 與導覽列高度相同 */
+    margin-top: -100px;    /* 把空間往上推 */
+}
+
+  /* 購物車icon */
+  .shopping-cart-icon {
+    position: absolute;
+    bottom: 33px;
+    right: 22px;
+    font-size: 1.5rem;
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .shopping-cart-icon.added {
+    color: #28a745;
+  }
+
+  /* 購物車選單 */
+  #cartPanel {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 320px;
+    max-height: 60vh;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 16px;
+    display: none;
+    z-index: 1100;
+  }
+
+  #cartPanel h4 {
+    margin-top: 0;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  .cart-item img {
+    width: 60px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 12px;
+  }
+
+  .cart-item-info {
+    flex: 1;
+  }
+
+  .cart-item-info h6 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    color: #222;
+  }
+
+  .cart-item-info button {
+    background: transparent;
+    border: none;
+    color: #dc3545;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+
+
+</style>
+</head>
+<body>
+      
+    
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>    
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>    
+
+    {{ spots_data|json_script:"spots-json" }}
+    <script>
+      const spotsData = JSON.parse(document.getElementById('spots-json').textContent);
+    </script>
+
+    <!-- start banner Area -->
+    <section class="banner-area" id="home">
+        <!-- Start Header Area -->
+        <header class="default-header">
+            <nav class="navbar navbar-expand-lg  navbar-light fixed-top" 
+                style="background-color: #001f3f;">
+                <div class="container">
+                      <a class="navbar-brand" href="{% url 'index' %}">
+                            <img src="{% static 'img/logo.png' %}" alt="CrushTrip Logo" style="height:80px;">
+                      </a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="text-white lnr lnr-menu"></span>
+                      </button>
+
+                    <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li><a href="#about">關於我們</a></li>
+                            <li><a href="{% url 'spots' %}">客製行程</a></li>
+                            <li><a href="#spot">熱門景點</a></li>
+                            <li><a href="#mate">尋找旅伴</a></li>
+                            <li><a href="#faq">資訊參考</a></li>
+                            <li><a href="#contact">聯絡我們</a></li>
+                            <!-- Dropdown -->
+                            
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                會員中心
+                                </a>
+                                <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'update_profile' %}">修改會員資訊</a>
+                                <a class="dropdown-item" href="{% url 'cart' %}">我的購物車</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">登出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- End Header Area -->
+    </section>
+
+
+    <section class="default-banner active-blog-slider">
+            <div class="item-slider relative" style="background: url({% static 'img/slider1.jpg' %});background-size: cover;">
+                <div class="overlay" style="background: rgba(0,0,0,.3)"></div>
+                <div class="container">
+                    <div class="row fullscreen justify-content-center align-items-center">
+                        <div class="col-md-10 col-12">
+                            <div class="banner-content text-center">
+                                <h4 class="text-white mb-20 text-uppercase">探索日本從這裡開始!打造專屬旅程與緣分的起點</h4>
+                                <h1 class="text-uppercase text-white">CrushTrip</h1>
+                                <p class="text-white">CrushTrip是一個專為熱愛日本旅遊的你打造的智慧行程規劃平台。無論你是初次造訪還是資深旅人，只需幾個步驟，就能輕鬆規劃出專屬於你的日本之旅，，還能配對志同道合的旅伴，讓旅程更有溫度。
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="item-slider relative" style="background: url({% static 'img/slider2.jpg' %});background-size: cover;">
+                <div class="overlay" style="background: rgba(0,0,0,.3)"></div>
+                <div class="container">
+                    <div class="row fullscreen justify-content-center align-items-center">
+                        <div class="col-md-10 col-12">
+                            <div class="banner-content text-center">
+                                <h4 class="text-white mb-20 text-uppercase">探索日本從這裡開始!打造專屬旅程與緣分的起點</h4>
+                                <h1 class="text-uppercase text-white">CrushTrip</h1>
+                                <p class="text-white">CrushTrip是一個專為熱愛日本旅遊的你打造的智慧行程規劃平台。無論你是初次造訪還是資深旅人，只需幾個步驟，就能輕鬆規劃出專屬於你的日本之旅，，還能配對志同道合的旅伴，讓旅程更有溫度。 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item-slider relative" style="background: url({% static 'img/slider3.jpg' %});background-size: cover;">
+                <div class="overlay" style="background: rgba(0,0,0,.3)"></div>
+                <div class="container">
+                    <div class="row fullscreen justify-content-center align-items-center">
+                        <div class="col-md-10 col-12">
+                            <div class="banner-content text-center">
+                                <h4 class="text-white mb-20 text-uppercase">探索日本從這裡開始!打造專屬旅程與緣分的起點</h4>
+                                <h1 class="text-uppercase text-white">CrushTrip</h1>
+                                <p class="text-white">CrushTrip是一個專為熱愛日本旅遊的你打造的智慧行程規劃平台。無論你是初次造訪還是資深旅人，只需幾個步驟，就能輕鬆規劃出專屬於你的日本之旅，，還能配對志同道合的旅伴，讓旅程更有溫度。 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- Start Video Area -->
+    <section class="video-area pt-40 pb-40">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="video-content">
+                <a href="https://www.youtube.com/watch?v=p3LmC9Uz-rI" class="play-btn"><img src="{% static 'img/play-btn.png' %}" alt=""></a>
+                <div class="video-desc">
+                    <h3 class="h2 text-white text-uppercase">Meet the New Japan</h3>
+                    <h4 class="text-white">Youtube video will appear in popover</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Video Area -->
+
+
+    <!-- Start about Area -->
+    <section class="section-gap info-area" id="about">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-60 col-lg-8">
+                    <div class="title text-center">
+                        <h1 class="mb-10">關於CrushTrip</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="single-info row mt-40">
+                <div class="col-lg-6 col-md-12 mt-120 text-center no-padding info-left">
+                    <div class="info-thumb">
+                        <img src="{% static 'img/about-img.jpg' %}" class="img-fluid" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 no-padding info-rigth">
+                    <div class="info-content">
+                        <h2 class="pb-30">你是否曾經想過：如果有一個網站，能根據你的興趣推薦日本景點、幫你規劃行程，甚至找到志同道合的旅伴，那該有多好？這正是我們創立 CrushTrip 的初衷。
+                        </h2>
+                        <p>
+                            CrushTrip 不只是旅遊規劃工具，更是一個讓你「遇見風景，也遇見人」的旅遊平台。我們相信，旅行不該只是打卡與奔波，而是一段能與自己、與他人產生連結的過程。
+                        </p>
+                        <br>
+                        <p>我們提供五大核心功能，讓你的日本之旅更輕鬆、更有趣：</p>
+                        <br>
+                        <p>1.推薦日本景點：
+                        從東京的潮流街頭到京都的古老神社，從北海道的雪景到沖繩的海灘，我們根據你的偏好與季節推薦最適合的景點，讓你不再迷失在茫茫資訊海中。</p>
+                        <br>
+                        <p>2.自由選擇景點並生成行程：你可以自由挑選想去的地方，系統會根據地理位置、交通時間與開放時段，自動生成一份合理又高效的建議行程，讓你省下大量規劃時間。</p>
+                        <br>
+                        <p>3.配對興趣相同的用戶作為旅伴：旅行的美好，往往來自同行的人。我們透過興趣標籤與行程相似度，幫你找到可能成為朋友甚至旅伴的使用者，讓旅程多一份溫度。</p>
+                        <br>
+                        <p>4.可自由選擇是否配對：我們尊重每位旅人的風格。你可以選擇單獨旅行、與朋友同行，或開放心態認識新朋友，一切由你決定。</p>
+                        <br>
+                        <p>5.一鍵導向訂機票網站：當你完成行程規劃後，我們提供快速連結至機票預訂平台，讓你從靈感到出發，無縫接軌。</p>
+                        <br>
+                        <p>CrushTrip 是一場關於探索、連結與發現的旅程。我們希望，無論你是獨自踏上旅途，還是與人同行，都能在這裡找到屬於你的風景與故事。現在，就從 CrushTrip 開始，讓日本不只是目的地，而是一段值得期待的旅程。</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End about Area -->
+
+    <!-- Start spot Area -->
+     
+    <section class="feature-area section-gap" id="spot">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-60 col-lg-8">
+                    <div class="title text-center">
+                        <h1 class="mb-10">熱門景點推薦</h1>
+                        
+                    </div>
+                </div>
+            </div>
+            {% comment %} 重新分組 {% endcomment %}
+            {% regroup data_list_osusume by parent_title as grouped_data %}
+            {% if grouped_data|length > 0 %}
+                <div class="row">
+                    {% for group in grouped_data %}
+                        <div class="col-lg-4 col-md-6 ">
+                            <a href="{% url 'cons_detail' group.grouper %}" class="single-feature mb-30 d-block text-dark text-decoration-none">
+                                <div class="title d-flex flex-row pb-20">
+                                    {% comment %} <span class="lnr lnr-user"></span> {% endcomment %}
+                                    <h4>{{ group.grouper }}</h4>
+                                </div>
+                                <p>{{ group.list.0.content|truncatechars:50 }}</p>
+                            </a>
+                            <i class="fa fa-shopping-cart shopping-cart-icon cart-button" 
+                              data-attraction-id="{{ group.list.0.id }}" 
+                              data-title="{{ group.grouper|escapejs }}"></i>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>沒資料</p>
+            {% endif %}
+        </div>
+    </section>
+    <!-- End spot Area -->
+
+
+    <!-- Start mate Area -->
+    <div id="mate" class="anchor-offset"></div>
+    <section class="gallery-area pt-5">
+    <div class="container  wide-container">
+        <!-- 區塊標題 -->      
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">尋找旅伴</h1>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for img in imgs %}
+                <div class="swiper-slide ">
+                    <div class="avatar-wrapper ">
+                        {% if img.avatar %}
+                            <img class="avatar-img" src="{{ img.avatar.url }}" alt="{{ img.username }}大頭貼" />
+                        {% else %}
+                            <img class="avatar-img" src="{% static 'img/photo.png' %}" alt="預設大頭貼" />
+                        {% endif %}
+                        <p class="name">{{ img.first_name }} {{ img.last_name }}</p>
+                         <div class="heart" onclick="toggleHeart(this)"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        
+            <!-- 自訂箭頭 -->
+            <div class="swiper-button-next "></div>
+            <div class="swiper-button-prev "></div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- End mate Area -->
+
+
+    <!-- Start faq Area -->
+    <section class="faq-area section-gap" id="faq">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-60 col-lg-8">
+                    <div class="title text-center">
+                        <h1 class="mb-10">旅日潮興，網站人氣同步增長</h1>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="counter-left col-lg-3 col-md-3">
+                    <div class="single-facts">
+                        <h2 class="counter">18,140,100</h2>
+                        <p>5月全球日本旅遊人數</p>
+                    </div>
+                    <div class="single-facts">
+                        <h2 class="counter">2,699,700</h2>
+                        <p>5月台灣至日本旅遊人數</p>
+                    </div>
+                    <div class="single-facts">
+                        <h2 class="counter">40</h2>
+                        <p>CrushTrip會員總人數</p>
+                    </div>
+                    <div class="single-facts">
+                        <h2 class="counter">25</h2>
+                        <p>CrushTrip配對成功人數</p>
+                    </div>
+                </div>
+                <div class="faq-content col-lg-9 col-md-9">
+                    <div class="single-faq">
+                        <h2 class="text-uppercase">
+                            2025年5月日本旅遊人數
+                        </h2>
+                        <p>
+                            2025年5月，全球共有18,140,100人前往日本旅遊，其中台灣旅客占2,699,700人，台灣旅日人數約占全球旅日人數14.8%。
+                        </p>
+                    </div>
+                    <div class="single-faq">
+                        <h2 class="text-uppercase">
+                            有多少人使用過CrushTrip?
+                        </h2>
+                        <p>
+                            已有 40 位旅人註冊 CrushTrip，一起開啟日本行程規劃的新方式。無論你是初次造訪，或想更有效率地規劃下一段旅程，CrushTrip 提供快速、簡便的工具，幫你輕鬆安排景點、交通與美食。讓旅行不再繁瑣，立即加入我們，打造專屬於你的日本記憶。
+                        </p>
+                    </div>
+                    <div class="single-faq">
+                        <h2 class="text-uppercase">
+                            找到你的理想旅伴?
+                        </h2>
+                        <p>
+                            已有 25 位使用者透過 CrushTrip 的配對功能，成功找到合拍的旅伴，一起展開日本旅程。來試試你的旅伴緣分吧！
+                        </p>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </section>
+    <!-- End faq Area -->
+
+
+    <!-- Start logo Area -->
+    <section class="logo-area">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </section>
+    <!-- End logo Area -->
+
+
+    <!-- start contact Area -->
+    <section class="contact-area section-gap" id="contact">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-60 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">If you need, Just drop us a line</h1>
+          
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form mx-auto" id="contactForm" method="post" style="max-width: 800px;">
+      {% csrf_token %}
+      <div class="row">
+        <!-- 左欄 -->
+        <div class="col-md-6 d-flex flex-column justify-content-between">
+          <div class="form-group mb-3">
+            <input name="name" type="text" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group mb-3">
+            <input name="email" type="email" class="form-control" placeholder="Enter email address" required>
+          </div>
+          <div class="form-group mb-3">
+            <input name="subject" type="text" class="form-control" placeholder="Enter your subject" required>
+          </div>
+        </div>
+
+        <!-- 右欄 -->
+        <div class="col-md-6 d-flex flex-column justify-content-between">
+          <div class="form-group mb-3 flex-grow-1 d-flex flex-column" style="flex: 1;">
+            <textarea name="message" class="form-control flex-grow-1" placeholder="Message" required></textarea>
+          </div>
+          <div>
+            <button class="primary-btn btn-block mt-2" type="submit">
+              SEND MESSAGE <span class="lnr lnr-arrow-right"></span>
+            </button>
+            <div class="alert-msg mt-2" id="formStatus"></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+    <!-- end contact Area -->
+
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>重新定義旅遊的方式</h6>
+                        <p>我們相信旅程不只是抵達目的地，而是在途中遇見共鳴的靈魂、激發新的視野。透過個人化的旅伴推薦機制與深入的偏好設定，CrushTrip 讓每一次的出發都蘊含探索與連結的可能。我們致力打造一個兼具效率與情感溫度的旅遊體驗，讓每個使用者都能在旅程中找到與自己節奏契合的夥伴與回憶。加入我們，開啟屬於你的 CrushTrip 冒險。                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer-text">Crushtrip &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i>Crushtrip</p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+                <div class="col-lg-5  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Newsletter</h6>
+                        <p>Stay update with our latest</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+
+<style>
+/* 讓所有 placeholder 立即可見，無動畫、無滑入效果 */
+input::placeholder,
+textarea::placeholder {
+  opacity: 1 !important;
+  color: #666 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 移除可能被主題套件套用的滑入時樣式 */
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 1 !important;
+  color: #666 !important;
+}
+
+/* 修正 placeholder 被覆蓋、透明、滑入動畫的情況 */
+input.form-control,
+textarea.form-control {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 有些主題會把 placeholder 初始設成透明動畫，這裡清除 */
+input.form-control:-webkit-autofill::first-line,
+textarea.form-control:-webkit-autofill::first-line {
+  color: #000 !important;
+}
+
+
+
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // 阻止表單預設送出
+
+    const formData = new FormData(form);
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch("{% url 'send_message' %}", {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrfToken
+      },
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      const statusDiv = document.getElementById('formStatus');
+
+      if (data.success) {
+        statusDiv.innerHTML = "<div class='alert alert-success'>訊息已成功送出！</div>";
+        form.reset();
+      } else {
+        statusDiv.innerHTML = `<div class='alert alert-danger'>${data.error || '送出失敗，請稍後再試。'}</div>`;
+      }
+
+      // 3 秒後淡出訊息
+      setTimeout(() => {
+        statusDiv.innerHTML = "";
+      }, 3000);
+    })
+    .catch(() => {
+      const statusDiv = document.getElementById('formStatus');
+      statusDiv.innerHTML = "<div class='alert alert-danger'>系統錯誤，請稍後再試。</div>";
+      setTimeout(() => {
+        statusDiv.innerHTML = "";
+      }, 3000);
+    });
+  });
+});
+</script> 
+<script>
+    
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 4,
+    spaceBetween: 20,
+    loop: true,
+    centeredSlides: false, 
+    initialSlide: 0,             // 從第一張開始
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      1024: { slidesPerView: 4 },
+      768: { slidesPerView: 3 },
+      480: { slidesPerView: 2 },
+      0: { slidesPerView: 1 }
+    }
+  });
+
+  function toggleHeart(el) {
+    el.classList.toggle('liked');
+  }
+
+</script>    
+
+<script type="module">
+  import { addToCart } from '/static/js/cart.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.cart-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.attractionId;
+        const title = btn.dataset.title;
+        console.log('[點擊加入購物車]', id, title);
+        addToCart(id, title,btn);
+      });
+    });
+  });
+
+</script>
+
+
+</body>
+</html>
