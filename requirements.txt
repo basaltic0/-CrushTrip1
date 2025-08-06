@@ -9,6 +9,8 @@ charset-normalizer==3.4.2
 colorama==0.4.6
 distro==1.9.0
 Django==5.2.4
+whitenoise==6.6.0
+gunicorn==21.2.0
 django-environ==0.12.0
 django-multiselectfield==1.0.1
 h11==0.16.0
@@ -39,3 +41,8 @@ tzdata==2025.2
 urllib3==2.5.0
 websocket-client==1.8.0
 wsproto==1.2.0
+selenium
+bs4
+json
+collections
+re
