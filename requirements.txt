@@ -42,5 +42,4 @@ urllib3==2.5.0
 websocket-client==1.8.0
 wsproto==1.2.0
 selenium
-bs4
-re
+bs4==0.0.1
