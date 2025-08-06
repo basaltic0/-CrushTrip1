@@ -882,6 +882,7 @@ def index(request):
         'data_list_osusume': data_list_osusume,
         'imgs': img,
     }
+    print(f"目前抓到資料筆數：{data_list.count()}")
     if data_list_osusume.exists():
         print("有資料")
     else:
