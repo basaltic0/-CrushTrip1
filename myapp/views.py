@@ -892,7 +892,7 @@ def index(request):
 # 必看景點內文處理和回傳
 def cons_detail(request,parent_title):
     # 根據parent_title查詢資料
-    data_list = crawlers_osusume.objects.filter(parent_title=parent_title)
+    data_list = crawlers_main.objects.filter(parent_title=parent_title)
 
     # 將資料和圖片做處理
     for item in data_list:

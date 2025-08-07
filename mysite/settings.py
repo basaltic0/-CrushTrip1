@@ -167,6 +167,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# 部屬
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
@@ -182,6 +183,18 @@ DATABASES = {
     }
 }
 
+# 本機
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#         "Host": "mcldisu5ppkm29wf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+#         "Username": "vjr61owdt6ou592r",
+#         "Password": "j1zbmffee9oqryb8",
+#         "Port": "3306",
+#         "Database": "r494s7l95n8xuxf6",
+#     }
+# }
 
 
 CACHES = {
