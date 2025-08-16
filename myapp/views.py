@@ -398,8 +398,12 @@ def update_profile(request):
     user = request.user
     if request.method == "POST":
         form = CustomUserUpdateForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save(commit=False)          
+        try:
+            if form.is_valid():
+                user = form.save(commit=False)          
+        except Exception as e:
+            print("圖片上傳失敗：", e)
+
 @login_required
 def update_profile(request):
     user = request.user
