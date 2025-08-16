@@ -175,9 +175,13 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_REGION_NAME = 'ap-northeast-1'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
+# 權限與 URL 設定
+AWS_QUERYSTRING_AUTH = False  # 讓圖片 URL 不帶簽名，可公開存取
+AWS_DEFAULT_ACL = None        # 避免自動加上 ACL，使用 Bucket 預設權限
+
 # 媒體檔案儲存設定
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
 
 
 # 部屬
