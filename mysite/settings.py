@@ -164,8 +164,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # 開放外部可存取資料夾的位置
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 INSTALLED_APPS += ['storages']
 
