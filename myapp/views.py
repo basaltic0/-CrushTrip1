@@ -401,6 +401,8 @@ def update_profile(request):
         try:
             if form.is_valid():
                 user = form.save(commit=False)          
+            print("Avatar name:", user.avatar.name)
+            print("Avatar URL:", user.avatar.url)
         except Exception as e:
             print("圖片上傳失敗：", e)
 
@@ -440,6 +442,8 @@ def update_profile(request):
             "preferred_age_range": user.preferred_age_range,
             "preferred_travel": user.preferred_travel,
         })
+    print("Avatar name:", user.avatar.name)
+    print("Avatar URL:", user.avatar.url)
 
     return render(request,"update_profile.html",
         {"form": form, "avatar": user.avatar.url if user.avatar else None},
