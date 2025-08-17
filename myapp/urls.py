@@ -39,4 +39,5 @@ urlpatterns = [
     path('cr/', views.cr,name = "cr"),#主要城市
     path('cr3/', views.cr3,name = "cr3"),#熱門景點
     path('cons/<str:parent_title>/', views.cons_detail, name='cons_detail'),#子頁內容
+    path('debug-avatar/', views.debug_avatar, name='debug_avatar'),
     ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)#存放大頭貼

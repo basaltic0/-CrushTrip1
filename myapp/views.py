@@ -32,6 +32,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.pdfbase import pdfmetrics
+import requests
 import io
 
 
@@ -392,7 +393,6 @@ from .forms import CustomUserUpdateForm
 from django.contrib.auth import update_session_auth_hash
 
 # 更新會員資料
-
 @login_required
 def update_profile(request):
     user = request.user
@@ -922,3 +922,26 @@ def cons_detail(request,parent_title):
     print("筆數：", crawlers_osusume.objects.filter(parent_title=parent_title).count())
     
     return render(request, 'cons.html',context)
+
+
+@login_required
+def debug_avatar(request):
+    user = request.user
+    avatar_url = user.avatar.url if user.avatar else None
+    avatar_exists = False
+    status_code = None
+
+    if avatar_url:
+        try:
+            response = requests.head(avatar_url)
+            status_code = response.status_code
+            avatar_exists = response.status_code == 200
+        except Exception as e:
+            status_code = str(e)
+
+    return render(request, 'debug_avatar.html', {
+        'avatar_url': avatar_url,
+        'avatar_exists': avatar_exists,
+        'status_code': status_code,
+        'user': user,
+    })
