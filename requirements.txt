@@ -48,3 +48,4 @@ mysqlclient==2.2.4
 PyMySQL==1.1.0
 boto3
 django-storages
+requests
