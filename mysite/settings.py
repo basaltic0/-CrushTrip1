@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 import environ
 import os
 import django_heroku
+import dj_database_url
 from pathlib import Path
 
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -202,6 +203,10 @@ DATABASES = {
         }
     }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+# }
+
 
 # 本機
 # DATABASES = {
