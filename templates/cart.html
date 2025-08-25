@@ -650,7 +650,7 @@ h6 {
                             <li><a href="{% url 'index' %}#about">關於我們</a></li>
                             <li><a href="{% url 'spots' %}">客製行程</a></li>
                             <li><a href="{% url 'index' %}#spot">熱門景點</a></li>
-                            <li><a href="{% url 'index' %}#mate">尋找旅伴</a></li>
+                            {% comment %} <li><a href="{% url 'index' %}#mate">尋找旅伴</a></li> {% endcomment %}
                             <li><a href="{% url 'index' %}#faq">常見問題</a></li>
                             <li><a href="{% url 'index' %}#contact">聯絡我們</a></li>
                             <!-- Dropdown -->
@@ -791,6 +791,8 @@ h6 {
     <section id="cartSection" aria-label="購物車區">
       <h3>已加入的景點</h3>
       <div id="cartList"></div><button id="startTripBtn" style="margin-top:15px; display:block; max-width: 200px;">出發</button>
+      <div id="statusMessage" style="display: none; color: #007bff; margin-top: 10px; text-align: center;"></div>
+      {% comment %} <div id="statusMessage" style="color: #007bff; margin-top: 10px; text-align: center;">AAA</div> {% endcomment %}
     </section>
 
     <input type="hidden" id="id_email" value="{{ request.user.email }}">
@@ -819,7 +821,7 @@ h6 {
       <textarea id="adjustmentInput" placeholder="請輸入調整需求..." style="width:100%; height:100px; padding:10px; font-size:16px; border:1px solid #ccc; border-radius:6px; resize:vertical; margin-bottom:15px;"></textarea>
       <div style="display:flex; justify-content:flex-end; gap:15px;">
         <button id="adjustBtn" style="background:#007bff; color:#fff; padding:10px 20px; font-size:16px; border-radius:6px; border:none; cursor:pointer;">送出調整需求</button>
-        <button id="packageBtn" style="background:#28a745; color:#fff; padding:10px 20px; font-size:16px; border-radius:6px; border:none; cursor:pointer;">一鍵打包並寄送</button>
+        <button id="packageBtn" style="background:#28a745; color:#fff; padding:10px 20px; font-size:16px; border-radius:6px; border:none; cursor:pointer;">生成PDF並寄送</button>
       </div>
     </section>
 
@@ -988,6 +990,10 @@ h6 {
       });
 
       document.getElementById('startTripBtn').addEventListener('click', async () => {
+      const statusEl = document.getElementById('statusMessage');
+      statusEl.innerText = '行程生成中...';
+      statusEl.style.display = 'block';
+
       // 取得表單資料（新的 id 名稱）
       const departureDate = document.getElementById('departureDate').value;
       const returnDate = document.getElementById('returnDate').value;
@@ -1060,6 +1066,13 @@ h6 {
         document.getElementById('itinerarySection').style.display = 'block';
         //document.getElementById('bookingLinks').innerHTML = data.bookingLinksHtml || '';
         document.getElementById('itinerarySection').scrollIntoView({ behavior: 'smooth' });
+
+        // 更新提示文字
+        statusEl.innerText = '行程已生成！';
+        setTimeout(() => {
+          statusEl.style.display = 'none';
+        }, 3000);
+
       } catch (e) {
         alert('取得行程失敗，請稍後再試');
         console.error(e);

@@ -585,6 +585,7 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 
 # 必看景點
+@require_POST
 def cr(request):
     TitleList = []
     LinkList = []
@@ -720,6 +721,7 @@ def cr(request):
     })
 
 # 主要城市
+@require_POST
 def cr3(request):
     driver = webdriver.Chrome(options=options)
     all_sections =[]
