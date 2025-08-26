@@ -65,9 +65,9 @@ class crawlers_osusume(models.Model):
 class crawlers_main(models.Model):
     area = models.CharField(max_length=50)
     parent_title = models.CharField(max_length=50, default='空')
-    heading = models.CharField(max_length=50)
-    content = models.CharField(max_length=50)
-    img = models.CharField(max_length=50, null=True)
+    heading = models.TextField()
+    content = models.TextField()
+    img = models.URLField(null=True)
     # online = models.ForeignKey('Online', default=1, on_delete=models.CASCADE, db_constraint=False)
 
 class CartItem(models.Model):

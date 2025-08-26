@@ -243,12 +243,15 @@ input.is-invalid {
     border-radius: 8px;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* 水平排列 */
+    height: 150px; /* 固定卡片高度 */
+
   }
 
   .attraction-thumb {
-    width: 100%;
-    height: 300px;
+    width: 470px;
+    height: auto;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     position: relative;
   }
@@ -258,11 +261,14 @@ input.is-invalid {
     flex-grow: 1;
     position: relative;
   }
-
+  .attraction-info p,
   .attraction-info h5 {
     margin: 0 0 8px 0;
-    font-weight: 700;
-    font-size: 1.1rem;
+    {% comment %} font-weight: 700; {% endcomment %}
+    {% comment %} font-size: 1.1rem; {% endcomment %}
+    overflow-wrap: break-word;    /* 讓長字能中斷換行 */
+    word-break: break-word;       /* 同樣幫助避免文字溢出 */
+    white-space: normal;          /* 確保能自動換行 */
     color: #222;
   }
 
@@ -401,7 +407,7 @@ input.is-invalid {
                             <li><a href="{% url 'index' %}#about">關於我們</a></li>
                             <li><a href="{% url 'spots' %}">客製行程</a></li>
                             <li><a href="{% url 'index' %}#spot">熱門景點</a></li>
-                            <li><a href="{% url 'index' %}#mate">尋找旅伴</a></li>
+                            {% comment %} <li><a href="{% url 'index' %}#mate">尋找旅伴</a></li> {% endcomment %}
                             <li><a href="{% url 'index' %}#faq">常見問題</a></li>
                             <li><a href="{% url 'index' %}#contact">聯絡我們</a></li>
                             <!-- Dropdown -->
@@ -412,7 +418,7 @@ input.is-invalid {
                                 </a>
                                 <div class="dropdown-menu">
                                 <a class="dropdown-item" href="{% url 'update_profile' %}">修改會員資訊</a>
-                                <a class="dropdown-item" href="{% url 'cart' %}">我的購物車</a>
+                                <a class="dropdown-item" href="{% url 'cart' %}">我的行程</a>
                                 <a class="dropdown-item" href="{% url 'logout' %}">登出</a>
                                 </div>
                             </li>

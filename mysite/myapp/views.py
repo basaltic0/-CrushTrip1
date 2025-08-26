@@ -32,6 +32,7 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from reportlab.pdfbase import pdfmetrics
+import requests
 import io
 
 
@@ -392,14 +393,19 @@ from .forms import CustomUserUpdateForm
 from django.contrib.auth import update_session_auth_hash
 
 # 更新會員資料
-
 @login_required
 def update_profile(request):
     user = request.user
     if request.method == "POST":
         form = CustomUserUpdateForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = form.save(commit=False)          
+        try:
+            if form.is_valid():
+                user = form.save(commit=False)          
+            print("Avatar name:", user.avatar.name)
+            print("Avatar URL:", user.avatar.url)
+        except Exception as e:
+            print("圖片上傳失敗：", e)
+
 @login_required
 def update_profile(request):
     user = request.user
@@ -436,6 +442,8 @@ def update_profile(request):
             "preferred_age_range": user.preferred_age_range,
             "preferred_travel": user.preferred_travel,
         })
+    print("Avatar name:", user.avatar.name)
+    print("Avatar URL:", user.avatar.url)
 
     return render(request,"update_profile.html",
         {"form": form, "avatar": user.avatar.url if user.avatar else None},
@@ -577,6 +585,7 @@ options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 
 # 必看景點
+@require_POST
 def cr(request):
     TitleList = []
     LinkList = []
@@ -712,6 +721,7 @@ def cr(request):
     })
 
 # 主要城市
+@require_POST
 def cr3(request):
     driver = webdriver.Chrome(options=options)
     all_sections =[]
@@ -875,12 +885,14 @@ def index(request):
     data_list = crawlers_main.objects.all()  # 從資料庫抓所有資料
     data_list_osusume = crawlers_main.objects.filter(area='osusume')
     img = CustomUser.objects.all()  # 從資料庫抓取所有 CustomUser 實例
+    for obj in data_list_osusume:obj.img = obj.img if obj.img else '/static/white.jpg'
 
     context = {
         'data_list': data_list,
         'data_list_osusume': data_list_osusume,
         'imgs': img,
     }
+    print(f"目前抓到資料筆數：{data_list.count()}")
     if data_list_osusume.exists():
         print("有資料")
     else:
@@ -890,7 +902,7 @@ def index(request):
 # 必看景點內文處理和回傳
 def cons_detail(request,parent_title):
     # 根據parent_title查詢資料
-    data_list = crawlers_osusume.objects.filter(parent_title=parent_title)
+    data_list = crawlers_main.objects.filter(parent_title=parent_title)
 
     # 將資料和圖片做處理
     for item in data_list:
@@ -916,3 +928,26 @@ def cons_detail(request,parent_title):
     print("筆數：", crawlers_osusume.objects.filter(parent_title=parent_title).count())
     
     return render(request, 'cons.html',context)
+
+
+@login_required
+def debug_avatar(request):
+    user = request.user
+    avatar_url = user.avatar.url if user.avatar else None
+    avatar_exists = False
+    status_code = None
+
+    if avatar_url:
+        try:
+            response = requests.head(avatar_url)
+            status_code = response.status_code
+            avatar_exists = response.status_code == 200
+        except Exception as e:
+            status_code = str(e)
+
+    return render(request, 'debug_avatar.html', {
+        'avatar_url': avatar_url,
+        'avatar_exists': avatar_exists,
+        'status_code': status_code,
+        'user': user,
+    })
