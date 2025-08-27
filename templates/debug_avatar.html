@@ -1,0 +1,12 @@
+<h2>🧪 Avatar Debug</h2>
+
+<p><strong>使用者：</strong> {{ user.username }}</p>
+
+{% if avatar_url %}
+    <p><strong>圖片 URL：</strong> <a href="{{ avatar_url }}" target="_blank">{{ avatar_url }}</a></p>
+    <p><strong>圖片是否存在：</strong> {{ avatar_exists }}</p>
+    <p><strong>HTTP 狀態碼：</strong> {{ status_code }}</p>
+    <img src="{{ avatar_url }}" alt="頭像預覽" style="max-width:200px; border:1px solid #ccc;">
+{% else %}
+    <p>❌ 尚未上傳頭像</p>
+{% endif %}

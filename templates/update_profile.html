@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-hant" class="no-js">
+<head>
+    
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% comment %} <img src="{% static 'img/logo.png' %}" alt="Logo"> {% endcomment %}
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>CrushTrip 修改資料</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/animate.min.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <style>
+    .contact-form .row {
+      align-items: stretch;
+    }
+
+    .contact-form .col-md-6 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-form textarea {
+      height: 100%;
+      resize: none;
+    }
+
+    .alert {
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            position: relative;
+            }
+    .alert-success { background-color: #d4edda; color: #155724; }
+    .alert-error { background-color: #f8d7da; color: #721c24; }
+    .alert-danger {
+          word-break: break-word;
+          white-space: normal;
+          overflow: visible;
+          display: block;
+          margin-top: 5px;S
+          }
+    .alert .close {
+        position: absolute; right: 10px; top: 5px;
+        cursor: pointer; font-weight: bold;
+        background: none; border: none; font-size: 1.2rem;
+    }        
+    input[type="text"],
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        color: #333;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0; /* 取消圓角 */
+        box-sizing: border-box;
+    }
+
+    select:focus,
+    input:focus {
+        border-color: #5ab9ea;
+        outline: none;
+    }
+
+    option {
+        color: #333;
+        background-color: #fff;
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        max-height: 160px;
+        overflow-y: auto;
+    }
+
+    .inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* 水平置中 */
+        align-items: center;     /* 垂直置中 */
+        min-height: 100vh;
+    }
+
+    body {
+  font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.profile-update-section {
+  padding: 60px 20px 80px;
+  background: #ffffff;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border-radius: 12px;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-wrapper {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+}
+
+.step-btn {
+  display: block;
+  width: 100%;
+  background-color: #5ab9ea;
+  color: white;
+  padding: 12px 0;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.step-btn:hover {
+  background-color: #3ca7d3;
+}
+
+#formStatus {
+  margin-top: 30px;
+  text-align: center;
+}
+.default-header {
+  background-color: #212529 !important;  /* Bootstrap bg-dark 顏色 */
+}
+
+input.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff0f0;
+}
+
+    </style>
+</head>
+<body>
+   
+       <!-- start banner Area -->
+    <section class="banner-area" id="home">
+        <!-- Start Header Area -->
+        <header class="default-header">
+            <nav class="navbar navbar-expand-lg  navbar-light fixed-top" 
+                style="background-color: #001f3f;">
+                <div class="container">
+                      <a class="navbar-brand" href="{% url 'index' %}">
+                        <img src="{% static 'img/logo.png' %}" alt="CrushTrip Logo" style="height:80px;">
+                      </a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="text-white lnr lnr-menu"></span>
+                      </button>
+
+                    <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li><a href="{% url 'index' %}#about">關於我們</a></li>
+                            <li><a href="{% url 'spots' %}">客製行程</a></li>
+                            <li><a href="{% url 'index' %}#spot">熱門景點</a></li>
+                            {% comment %} <li><a href="{% url 'index' %}#mate">尋找旅伴</a></li> {% endcomment %}
+                            <li><a href="{% url 'index' %}#faq">常見問題</a></li>
+                            <li><a href="{% url 'index' %}#contact">聯絡我們</a></li>
+                            <!-- Dropdown -->
+                            
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                會員中心
+                                </a>
+                                <div class="dropdown-menu">
+                                
+                                <a class="dropdown-item" href="{% url 'cart' %}">我的行程</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">登出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- End Header Area -->
+    </section>
+  <section class="profile-update-section">
+    <div class="form-container">
+      <h2>修改會員資料</h2>
+      
+      
+    <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+      <div class="form-wrapper">
+        <input type="hidden" name="remove_avatar" id="removeAvatarFlag" value="false">
+        <label>頭像上傳</label>
+        {% if user.avatar  %}
+        {% comment %} <img id="avatarPreview" src="{{ user.avatar.url }}" alt="頭像預覽" class="img-thumbnail mb-2" style="max-width: 150px;"> {% endcomment %}
+        {% else %}
+        <img id="avatarPreview" src="{% static 'img/photo.png' %}" alt="尚未上傳頭像" class="img-thumbnail mb-2" style="max-width: 150px;">
+        {% endif %}
+
+        <button type="button" id="removeAvatarBtn" class="btn btn-sm btn-outline-danger">移除圖片</button>
+        {{ form.avatar.errors }}
+        {{ form.avatar }}
+      </div>
+
+
+      <div class="form-group">
+          <div class="form-wrapper" style="width: 48%; float: left;">
+              <label for="{{ form.first_name.id_for_label }}">姓氏</label>
+              {{ form.first_name.errors }}
+              {{ form.first_name }}
+          </div>
+          <div class="form-wrapper" style="width: 48%; float: right;">
+              <label for="{{ form.last_name.id_for_label }}">名字</label>
+              {{ form.last_name.errors }}
+              {{ form.last_name }}
+          </div>
+          <div style="clear: both;"></div>
+      </div>
+
+      <div class="form-wrapper">
+          <label for="{{ form.username.id_for_label }}">帳號名稱</label>
+          {{ form.username.errors }}
+          {{ form.username }}
+          <i class="zmdi zmdi-account"></i>
+      </div>
+
+      <div class="form-wrapper">
+          <label for="id_email" class="form-label">電子信箱</label>
+            {{ form.email.errors }}
+            {{ form.email }}
+            <div id="emailError" class="text-danger small mt-1"></div>
+      </div>
+
+
+      <div class="form-wrapper">
+          <label for="{{ form.gender.id_for_label }}">性別</label>
+          {{ form.gender.errors }}
+          {{ form.gender }}
+          <i class="zmdi zmdi-caret-down"></i>
+      </div>
+
+      <div class="form-wrapper">
+        <label for="{{ form.travel_partner.id_for_label }}">期望旅伴性別</label>
+        {{ form.travel_partner.errors }}
+        {{ form.travel_partner }}
+        <i class="zmdi zmdi-male-female"></i>
+      </div>
+
+      <div class="form-wrapper">
+          <label for="{{ form.preferred_age_range.id_for_label }}">期望年齡層</label>
+          {{ form.preferred_age_range.errors }}
+          {{ form.preferred_age_range }}
+          <i class="zmdi zmdi-time"></i>
+      </div>
+
+      <div class="form-wrapper">
+          <label for="{{ form.preferred_travel.id_for_label }}">旅遊偏好 (最多 5 項)</label>
+          {{ form.preferred_travel.errors }}
+          <div class="checkbox-group">
+              {{ form.preferred_travel }}
+          </div>
+      </div>
+
+      <button type="submit" class="step-btn">儲存變更 <i class="zmdi zmdi-check"></i></button>   
+
+
+        <div id="formStatus">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        </form>
+      </div>
+    </div>
+  </section>  
+
+
+
+    
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>重新定義旅遊的方式</h6>
+                        <p>我們相信旅程不只是抵達目的地，而是在途中遇見共鳴的靈魂、激發新的視野。透過個人化的旅伴推薦機制與深入的偏好設定，CrushTrip 讓每一次的出發都蘊含探索與連結的可能。我們致力打造一個兼具效率與情感溫度的旅遊體驗，讓每個使用者都能在旅程中找到與自己節奏契合的夥伴與回憶。加入我們，開啟屬於你的 CrushTrip 冒險。                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer-text">Crushtrip &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i>Crushtrip</p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+                <div class="col-lg-5  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Newsletter</h6>
+                        <p>Stay update with our latest</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/slick.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/plugin.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+<style>
+/* 讓所有 placeholder 立即可見，無動畫、無滑入效果 */
+input::placeholder,
+textarea::placeholder {
+  opacity: 1 !important;
+  color: #666 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 移除可能被主題套件套用的滑入時樣式 */
+input:focus::placeholder,
+textarea:focus::placeholder {
+  opacity: 1 !important;
+  color: #666 !important;
+}
+
+/* 修正 placeholder 被覆蓋、透明、滑入動畫的情況 */
+input.form-control,
+textarea.form-control {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 有些主題會把 placeholder 初始設成透明動畫，這裡清除 */
+input.form-control:-webkit-autofill::first-line,
+textarea.form-control:-webkit-autofill::first-line {
+  color: #000 !important;
+}
+
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const emailInput = document.getElementById("id_email");
+  const emailError = document.getElementById("emailError");
+
+  form.addEventListener("submit", function (e) {
+    const emailValue = emailInput.value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(emailValue)) {
+      e.preventDefault(); // 停止表單送出
+      emailError.textContent = "請輸入正確格式的電子信箱";
+      emailInput.classList.add("is-invalid");
+    } else {
+      emailError.textContent = "";
+      emailInput.classList.remove("is-invalid");
+    }
+  });
+  // 輸入時即時清除錯誤
+  emailInput.addEventListener("input", function () {
+    emailError.textContent = "";
+    emailInput.classList.remove("is-invalid");
+  });
+});
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const removeBtn = document.getElementById("removeAvatarBtn");
+  const avatarInput = document.getElementById("id_avatar");
+  const avatarPreview = document.getElementById("avatarPreview");
+  const removeFlag = document.getElementById("removeAvatarFlag");
+
+  if (removeBtn && avatarInput && avatarPreview && removeFlag) {
+    removeBtn.addEventListener("click", function () {
+      avatarInput.value = "";
+      avatarPreview.src = "";
+      removeFlag.value = "true";
+    });
+     // 新增：即時預覽功能
+    avatarInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          avatarPreview.src = e.target.result;
+          removeFlag.value = "false";  // 有新圖片就不刪除
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+});
+
+// 限制 checkbox 最多選 5 項
+    const checkboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+            const checked = document.querySelectorAll('.checkbox-group input[type="checkbox"]:checked');
+            if (checked.length > 5) {
+                cb.checked = false;
+                alert("最多只能選擇 5 項旅遊偏好！");
+            }
+        });
+    });
+
+    setTimeout(() => {
+        document.querySelectorAll('.alert').forEach(alert => {
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 800);
+        });
+    }, 6000);   
+
+</script>
+
+
+</body>
+</html>

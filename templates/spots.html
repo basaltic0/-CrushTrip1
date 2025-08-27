@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="zh-hant" class="no-js">
+<head>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% comment %} <img src="{% static 'img/logo.png' %}" alt="Logo"> {% endcomment %}
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>CrushTrip 客製化行程</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'css/animate.min.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <style>
+    .contact-form .row {
+      align-items: stretch;
+    }
+
+    .contact-form .col-md-6 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-form textarea {
+      height: 100%;
+      resize: none;
+    }
+
+    .alert {
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            position: relative;
+            }
+    .alert-success { background-color: #d4edda; color: #155724; }
+    .alert-error { background-color: #f8d7da; color: #721c24; }
+    .alert-danger {
+          word-break: break-word;
+          white-space: normal;
+          overflow: visible;
+          display: block;
+          margin-top: 5px;S
+          }
+    .alert .close {
+        position: absolute; right: 10px; top: 5px;
+        cursor: pointer; font-weight: bold;
+        background: none; border: none; font-size: 1.2rem;
+    }        
+    input[type="text"],
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        color: #333;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0; /* 取消圓角 */
+        box-sizing: border-box;
+    }
+
+    select:focus,
+    input:focus {
+        border-color: #5ab9ea;
+        outline: none;
+    }
+
+    option {
+        color: #333;
+        background-color: #fff;
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        max-height: 160px;
+        overflow-y: auto;
+    }
+
+    .inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* 水平置中 */
+        align-items: center;     /* 垂直置中 */
+        min-height: 100vh;
+    }
+
+  body {
+        font-family: 'Noto Sans TC', sans-serif;
+        background-color: #f8f9fa;
+        padding: 120px 20px 40px;
+      }
+
+.profile-update-section {
+  padding: 60px 20px 80px;
+  background: #ffffff;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border-radius: 12px;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-wrapper {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+}
+
+.step-btn {
+  display: block;
+  width: 100%;
+  background-color: #5ab9ea;
+  color: white;
+  padding: 12px 0;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-top: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.step-btn:hover {
+  background-color: #3ca7d3;
+}
+
+#formStatus {
+  margin-top: 30px;
+  text-align: center;
+}
+.default-header {
+  background-color: #212529 !important;  /* Bootstrap bg-dark 顏色 */
+}
+
+input.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff0f0;
+}
+/* 城市下拉與搜尋 */
+  #citySearchSection {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #citySelect {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    outline-offset: 2px;
+  }
+
+  #searchBtn, #cartToggleBtn {
+    background-color: #5ab9ea;
+    border: none;
+    padding: 10px 16px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #searchBtn:hover, #cartToggleBtn:hover {
+    background-color: #3ca7d3;
+  }
+
+  /* 景點卡片 */
+  #attractionsSection {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  #attractionsSection h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 700;
+    color: #333;
+  }
+
+  #attractionsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .attraction-card {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row; /* 水平排列 */
+    height: 150px; /* 固定卡片高度 */
+
+  }
+
+  .attraction-thumb {
+    width: 470px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    position: relative;
+  }
+
+  .attraction-info {
+    padding: 15px 20px;
+    flex-grow: 1;
+    position: relative;
+  }
+  .attraction-info p,
+  .attraction-info h5 {
+    margin: 0 0 8px 0;
+    {% comment %} font-weight: 700; {% endcomment %}
+    {% comment %} font-size: 1.1rem; {% endcomment %}
+    overflow-wrap: break-word;    /* 讓長字能中斷換行 */
+    word-break: break-word;       /* 同樣幫助避免文字溢出 */
+    white-space: normal;          /* 確保能自動換行 */
+    color: #222;
+  }
+
+  .short-desc {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+    max-height: 2.8em; /* 大約2行 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .read-more-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: #5ab9ea;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  /* 購物車icon */
+  .shopping-cart-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    font-size: 1.5rem;
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .shopping-cart-icon.added {
+    color: #28a745;
+  }
+
+  /* 購物車選單 */
+  #cartPanel {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 320px;
+    max-height: 60vh;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 16px;
+    display: none;
+    z-index: 1100;
+  }
+
+  #cartPanel h4 {
+    margin-top: 0;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  .cart-item img {
+    width: 60px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 12px;
+  }
+
+  .cart-item-info {
+    flex: 1;
+  }
+
+  .cart-item-info h6 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    color: #222;
+  }
+
+  .cart-item-info button {
+    background: transparent;
+    border: none;
+    color: #dc3545;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+
+  /* 無項目文字 */
+  #cartEmptyMsg {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+  }
+
+
+
+    </style>
+</head>
+{{ spots_data|json_script:"spots-json" }}
+<script>
+  const spotsData = JSON.parse(document.getElementById('spots-json').textContent);
+</script>
+<script>
+  const attraction = {{ attraction|json_script:"attraction-data" }};
+</script>
+<script>
+  const attraction = JSON.parse(document.getElementById('attraction-data').textContent);
+</script>
+
+<body>   
+       <!-- start banner Area -->
+    <section class="banner-area" id="home">
+        <!-- Start Header Area -->
+        <header class="default-header">
+            <nav class="navbar navbar-expand-lg  navbar-light fixed-top" 
+                style="background-color: #001f3f;">
+                <div class="container">
+                      <a class="navbar-brand" href="{% url 'index' %}">
+                        <img src="{% static 'img/logo.png' %}" alt="CrushTrip Logo" style="height:80px;">
+                      </a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="text-white lnr lnr-menu"></span>
+                      </button>
+
+                    <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li><a href="{% url 'index' %}#about">關於我們</a></li>
+                            <li><a href="{% url 'spots' %}">客製行程</a></li>
+                            <li><a href="{% url 'index' %}#spot">熱門景點</a></li>
+                            {% comment %} <li><a href="{% url 'index' %}#mate">尋找旅伴</a></li> {% endcomment %}
+                            <li><a href="{% url 'index' %}#faq">常見問題</a></li>
+                            <li><a href="{% url 'index' %}#contact">聯絡我們</a></li>
+                            <!-- Dropdown -->
+                            
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                會員中心
+                                </a>
+                                <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'update_profile' %}">修改會員資訊</a>
+                                <a class="dropdown-item" href="{% url 'cart' %}">我的行程</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">登出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- End Header Area -->
+    </section>
+  <!-- 城市選擇 + 搜尋按鈕 -->
+    <section id="citySearchSection" aria-label="城市選擇">
+      <select id="citySelect" aria-label="選擇地區">
+        <option value="" disabled selected>請選擇區域</option>
+        <optgroup label="北海道">
+          <option value="sapporo">札幌與周邊地區</option>
+          <option value="hakodate">函館與北海道南部</option>
+        </optgroup>
+        <optgroup label="關東">
+          <option value="tokyo">東京</option>
+          <option value="yokohama">橫濱</option>
+          <option value="saitama">埼玉新都心</option>
+          <option value="chiba">千葉</option>
+        </optgroup>
+        <optgroup label="東海">
+          <option value="nagoya">名古屋市中心</option>
+          <option value="fuji">富士山（山梨）</option>
+        </optgroup>
+        <optgroup label="關西">
+          <option value="osaka">大阪灣地區</option>
+          <option value="kyoto">京都車站周邊區域</option>
+          <option value="nara">奈良市</option>
+          <option value="kobe">神戶</option>
+        </optgroup>
+        <optgroup label="九州">
+          <option value="fukuoka">福岡市</option>
+          <option value="kumamoto">熊本市</option>
+          <option value="kagoshima">鹿兒島市</option>
+          <option value="nagasaki">長崎市</option>
+          <option value="miyazaki">宮崎市</option>
+        </optgroup>
+        <optgroup label="沖繩">
+          <option value="naha">那霸</option>
+          <option value="ishigaki">石垣島</option>
+          <option value="miyako">宮古島</option>
+        </optgroup>
+      </select>
+      <button id="searchBtn" type="button" aria-label="搜尋景點">搜尋</button>
+    </section> 
+    
+    <script>
+      const citySelect = document.getElementById('citySelect');
+      const goButton = document.getElementById('searchBtn');
+
+      // 選擇改變時啟用按鈕
+      citySelect.addEventListener('change', function() {
+        if (this.value) {
+          goButton.disabled = false;
+        } else {
+          goButton.disabled = true;
+        }
+      });
+    
+        // 按鈕點擊時跳轉
+      goButton.addEventListener('click', function() {
+      const selectedValue = citySelect.value;
+      if (selectedValue) {
+        window.location.href = `/myapp/spots/${encodeURIComponent(selectedValue)}/`;
+      }
+      });   
+    </script>
+
+
+
+    <!-- 景點推薦區塊 -->
+    <section class="container my-5" id="attractionsSection" aria-live="polite">
+      <h2>景點推薦</h2>
+      <div id="attractionsList" aria-label="景點列表">
+      <!-- 景點卡片將動態生成 -->
+    </section>      
+          
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>重新定義旅遊的方式</h6>
+                        <p>我們相信旅程不只是抵達目的地，而是在途中遇見共鳴的靈魂、激發新的視野。透過個人化的旅伴推薦機制與深入的偏好設定，CrushTrip 讓每一次的出發都蘊含探索與連結的可能。我們致力打造一個兼具效率與情感溫度的旅遊體驗，讓每個使用者都能在旅程中找到與自己節奏契合的夥伴與回憶。加入我們，開啟屬於你的 CrushTrip 冒險。                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer-text">Crushtrip &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i>Crushtrip</p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+                <div class="col-lg-5  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Newsletter</h6>
+                        <p>Stay update with our latest</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+        
+        
+    <!-- JS 相關 -->
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/waypoints/4.0.1/jquery.waypoints.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/jquery.counterup/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/plugin.js' %}"></script>
+    <!-- 你的主功能 JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    <script>
+      const attractionsData = JSON.parse(document.getElementById('spots-json').textContent);
+      //console.log(document.getElementById('spots-json').textContent);
+
+      let shoppingCart = [];
+    
+      function createAttractionCard(attraction) {
+        const card = document.createElement('div');
+        card.className = 'attraction-card';
+
+        // 圖片判斷(取代)
+          const imageSrc = (attraction.img && attraction.img.trim() !== '') 
+            ? attraction.img 
+          //  : '/static/img/white.jpg'; // 或你想用的預設圖片路徑
+            : attraction.fullUrl;
+    
+        card.innerHTML = `
+          <img src="${imageSrc}" alt="${attraction.parent_title}" class="attraction-thumb" />
+          <div class="attraction-info">
+            <h5>${attraction.parent_title}</h5>
+            <p class="short-desc">${attraction.shortDesc}</p>
+            <button class="read-more-btn">詳讀全文</button>
+            <i class="fa fa-shopping-cart shopping-cart-icon" title="加入購物車"></i>
+          </div>
+        `;
+    
+        const readMoreBtn = card.querySelector('.read-more-btn');
+        readMoreBtn.addEventListener('click', () => {
+          if (attraction.id) {
+              // 直接跳轉，開新分頁
+              window.open(`/myapp/spot/${attraction.parent_title}/`, '_blank');
+            } else {
+              alert('該景點沒有詳細連結');
+            }
+          });
+        
+        // 資料測試
+        // console.log('attraction:', attraction);
+        // console.log('attraction.id:', attraction.id);
+
+        const cartIcon = card.querySelector('.shopping-cart-icon');
+        cartIcon.addEventListener('click', () => {
+          if (!shoppingCart.includes(attraction.id)) {
+            fetch('/myapp/cart/add/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'), // Django CSRF token
+              },
+              body: JSON.stringify({ id: attraction.id })
+            })
+            .then(response => response.json())
+            .then(data => {
+              alert(data.message);
+              if (data.success) {
+                shoppingCart.push(attraction.id);
+                cartIcon.classList.add('added');
+              }
+            })
+            .catch(() => alert('加入購物車失敗，請稍後再試'));
+          } else {
+            alert(`${attraction.parent_title} 已在購物車中`);
+          }
+        });
+        return card;
+      }
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i=0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // cookie 格式通常是 "name=value"
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      
+      function showPlaceholderCards() {
+        const listContainer = document.getElementById('attractionsList');
+        listContainer.innerHTML = `
+          <div class="placeholder-card">
+            <div class="placeholder-thumb"></div>
+            <div class="placeholder-info">
+              <div class="placeholder-line short"></div>
+              <div class="placeholder-line medium"></div>
+              <div class="placeholder-line long"></div>
+            </div>
+          </div>
+          <div class="placeholder-card">
+            <div class="placeholder-thumb"></div>
+            <div class="placeholder-info">
+              <div class="placeholder-line short"></div>
+              <div class="placeholder-line medium"></div>
+              <div class="placeholder-line long"></div>
+            </div>
+          </div>
+          <div class="placeholder-card">
+            <div class="placeholder-thumb"></div>
+            <div class="placeholder-info">
+              <div class="placeholder-line short"></div>
+              <div class="placeholder-line medium"></div>
+              <div class="placeholder-line long"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      console.log(attractionsData, Array.isArray(attractionsData));
+
+      function renderAttractions(data) {
+        const listContainer = document.getElementById('attractionsList');
+        listContainer.innerHTML = ''; // 先清空容器
+        if (!data || data.length === 0) {
+          listContainer.innerHTML = '<p class="text-center">該城市目前無景點資料。</p>';
+          return;
+        }
+        //data.forEach(item  => {
+        //  const card = createAttractionCard(item);
+        //  listContainer.appendChild(card);
+        //});
+
+         const firstCard = createAttractionCard(data[0]); // 只產生第一筆資料的卡片 
+         listContainer.appendChild(firstCard)
+
+      }
+    
+      // 頁面載入時預設顯示北海道景點
+      document.addEventListener('DOMContentLoaded', () => {
+         renderAttractions(attractionsData);
+      });
+    
+      document.getElementById('searchBtn').addEventListener('click', () => {
+        const city = document.getElementById('citySelect').value;
+        if (!city) {
+          alert('請先選擇城市');
+          return;
+        }
+        renderAttractions(city);
+      });
+        document.addEventListener('DOMContentLoaded', () => {
+          renderAttractions(attractionsData);
+        });
+
+      const el = document.querySelector('.my-element');
+      if (el) {
+        console.log(el.textContent); // 確保 el 存在才讀取 textContent
+      } else {
+        console.warn('找不到 .my-element 元素');
+      }
+
+    </script>
+    
+  </body>
+</html>
